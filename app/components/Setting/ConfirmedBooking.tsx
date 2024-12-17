@@ -1,26 +1,6 @@
-import { useState } from "react";
-import { AiOutlineEdit } from "react-icons/ai";
-import { HiOutlineEnvelope, HiOutlineUser } from "react-icons/hi2";
 import { SlOptionsVertical } from "react-icons/sl";
 
-const Services = () => {
-  const [image, setImage] = useState(
-    "https://cdn.vectorstock.com/i/1000v/51/99/icon-of-user-avatar-for-web-site-or-mobile-app-vector-3125199.jpg"
-  );
-  const [imagePreview, setImagePreview] = useState(image);
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file: any = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(file);
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
+const ConfirmedBooking = () => {
   return (
     <div className="space-y-6   mx-auto ">
       <div className="border text-wrap bg-white  border-[#FFE8E5] rounded-md p-4">
@@ -41,8 +21,8 @@ const Services = () => {
                 <p>Booking Reference: #123456</p>
               </div>
             </div>
-            <span className="bg-[#E86E6E] mb-1 md:mb-0 text-nowrap text-white text-sm py-1 px-5 rounded-full ml-10">
-              Cancelled
+            <span className="bg-[#10B981] mb-1 md:mb-0 text-nowrap text-white text-sm py-1 px-5 rounded-full ml-10">
+              Waiting for driver to assign
             </span>
           </div>
           <div className=" bg-[#F6F5F5] p-3 ml-[-20px] md:ml-0  rounded-full  cursor-pointer hover:bg-gray-200">
@@ -83,4 +63,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ConfirmedBooking;

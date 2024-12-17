@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Merriweather } from "next/font/google";
 const merriweather = Merriweather({

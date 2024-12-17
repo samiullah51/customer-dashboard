@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SlOptionsVertical, SlStar } from "react-icons/sl";
+import { SlOptionsVertical } from "react-icons/sl";
 import { TiDocumentText } from "react-icons/ti";
 import { Merriweather } from "next/font/google";
 import { BsStarFill } from "react-icons/bs";
@@ -10,7 +10,7 @@ const merriweather = Merriweather({
   style: ["normal", "italic"],
 });
 
-const ApiKeysManagement = () => {
+const CompletedBooking = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReview, setIsReview] = useState(false);
   const [showReview, setShowReview] = useState(false);
@@ -211,4 +211,4 @@ const ApiKeysManagement = () => {
   );
 };
 
-export default ApiKeysManagement;
+export default CompletedBooking;

@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
-import { BiCalendar, BiLock } from "react-icons/bi";
+import { BiCalendar } from "react-icons/bi";
 import { BsPaypal } from "react-icons/bs";
 import { CiLock, CiWallet } from "react-icons/ci";
-import { FaGooglePay } from "react-icons/fa6";
 import { HiOutlineEnvelope, HiOutlineUser } from "react-icons/hi2";
 import { SiMastercard } from "react-icons/si";
 import { SiGooglepay } from "react-icons/si";

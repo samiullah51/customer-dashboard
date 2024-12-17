@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { SlOptionsVertical } from "react-icons/sl";
 
-const ManagePropertyType = () => {
+const FAQs = () => {
   const [dropdownVisible, setDropdownVisible] = useState<string | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [newService, setNewService] = useState<string>("");
@@ -14,10 +13,6 @@ const ManagePropertyType = () => {
 
   const handleAccordionToggle = (id: string) => {
     setExpandedAccordion(expandedAccordion === id ? null : id);
-  };
-
-  const handleDropdownToggle = (id: string) => {
-    setDropdownVisible(dropdownVisible === id ? null : id);
   };
 
   const handleAction = (action: string) => {
@@ -155,4 +150,4 @@ const ManagePropertyType = () => {
   );
 };
 
-export default ManagePropertyType;
+export default FAQs;

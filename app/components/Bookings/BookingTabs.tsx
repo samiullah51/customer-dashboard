@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import EditProfile from "../Setting/EditProfile";
-import ChangePassword from "../Setting/ChangePassword";
-import ApiKeysManagement from "../Setting/ApiKeysManagement";
-import Services from "../Setting/Services";
-import ManagePropertyType from "../Setting/ManagePropertyType";
+import ConfirmedBooking from "../Setting/ConfirmedBooking";
+import ActiveBooking from "../Setting/ActiveBooking";
+import CompletedBooking from "../Setting/CompletedBooking";
+import CancelledBooking from "../Setting/CancelledBooking";
 
 function BookingTabs() {
   const [activeTab, setActiveTab] = useState("1");
@@ -12,17 +11,15 @@ function BookingTabs() {
   const renderTabContent = () => {
     switch (activeTab) {
       case "1":
-        return <EditProfile />;
+        return <ConfirmedBooking />;
       case "2":
-        return <ChangePassword />;
+        return <ActiveBooking />;
       case "3":
-        return <ApiKeysManagement />;
+        return <CompletedBooking />;
       case "4":
-        return <Services />;
-      case "5":
-        return <ManagePropertyType />;
+        return <CancelledBooking />;
       default:
-        return <EditProfile />;
+        return <ConfirmedBooking />;
     }
   };
 

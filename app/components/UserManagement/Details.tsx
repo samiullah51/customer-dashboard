@@ -1,13 +1,8 @@
-import { Merriweather } from "next/font/google";
 import React from "react";
 import { ImCross } from "react-icons/im";
 import { IoSend } from "react-icons/io5";
 import { RiAttachment2 } from "react-icons/ri";
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-});
+
 function Details({ setModalOpen }: any) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">

@@ -1,11 +1,9 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { SlCalender, SlOptions } from "react-icons/sl";
 import { BsEye } from "react-icons/bs";
 import "react-datepicker/dist/react-datepicker.css";
 import Pagination from "../global/Pagination";
-import { IoIosArrowDown } from "react-icons/io";
-import { HiOutlineChartPie } from "react-icons/hi2";
 import { Merriweather } from "next/font/google";
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -84,15 +82,8 @@ const TransactionTable: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [filteredTransactions, setFilteredTransactions] =
     useState<Transaction[]>(transactions);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedTransaction, setSelectedTransaction] =
-    useState<Transaction | null>(null);
-  const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState("All companies");
-  const [selectedReport, setSelectedReport] = useState("Generate Revenue");
 
   useEffect(() => {
     if (selectedDate) {
@@ -106,20 +97,8 @@ const TransactionTable: React.FC = () => {
     }
   }, [selectedDate]);
 
-  const handleFilterClick = (filter: string) => {
-    setFilterDropdownOpen(false);
-    setSelectedFilter(filter);
-  };
   const handleDropdownToggle = (transactionId: string) => {
     setActiveDropdown(activeDropdown === transactionId ? null : transactionId);
-  };
-
-  const handleMenuClick = (action: string, transaction: Transaction) => {
-    if (action === "view") {
-      setSelectedTransaction(transaction);
-      setModalOpen(true);
-    }
-    setActiveDropdown(null);
   };
 
   return (
@@ -192,10 +171,7 @@ const TransactionTable: React.FC = () => {
                   {activeDropdown === transaction.transactionId && (
                     <div className="absolute bottom-2 right-[60%] bg-white z-10 border border-[#FFE8E5] rounded shadow-lg mt-2">
                       <ul>
-                        <li
-                          onClick={() => handleMenuClick("view", transaction)}
-                          className="flex items-center px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer"
-                        >
+                        <li className="flex items-center px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
                           <BsEye className="text-lg mr-2" />
                           View
                         </li>
@@ -209,84 +185,6 @@ const TransactionTable: React.FC = () => {
         </table>
       </div>
       <Pagination />
-
-      {/* Modal */}
-      {
-        // modalOpen && selectedTransaction && (
-        //   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        //     <div
-        //       style={{ scrollbarWidth: "none" }}
-        //       className="bg-white max-h-[700px] h-[70vh] overflow-y-auto rounded-lg shadow-lg p-6 w-[95%] md:w-1/3 relative"
-        //     >
-        //       <div className="border  border-[#FFE8E5] rounded-md p-4">
-        //         <div className="flex mb-4">
-        //           <img
-        //             src="https://www.svgrepo.com/show/384682/account-avatar-profile-user-10.svg"
-        //             alt="Profile Avatar"
-        //             width={60}
-        //             height={60}
-        //             className="mr-4"
-        //           />
-        //           <div className="text-[#052145]">
-        //             <p className="text-[16px] font-[500]">Aqib Javid</p>
-        //             <p>aqib.official@gmail.com</p>
-        //             <p>+966 117603434</p>
-        //           </div>
-        //         </div>
-        //         <p className="text-[#052145] mb-3 font-[500]">Details</p>
-        //         <div className="w-full flex items-center justify-between text-[14px] font-[400] mb-4">
-        //           <p>Book date</p>
-        //           <p>Thursday, 8 August 2024</p>
-        //         </div>
-        //         <div className="w-full flex items-center justify-between text-[14px] font-[400] mb-4">
-        //           <p>Company</p>
-        //           <p>Direct Mover LLC</p>
-        //         </div>
-        //         <div className="w-full flex items-center justify-between text-[14px] font-[400] mb-4">
-        //           <p>Refund request date</p>
-        //           <p>Thursday, 12 August 2024</p>
-        //         </div>
-        //         <div className="w-full flex items-center justify-between text-[14px] font-[400] mb-4">
-        //           <p>Amount</p>
-        //           <p>$500</p>
-        //         </div>
-        //         <div className="w-full flex items-center justify-between text-[14px] font-[400] mb-4">
-        //           <p>Penalty %</p>
-        //           <p>10%</p>
-        //         </div>
-        //         {/* Grand Total */}
-        //         <div className="w-full p-2 rounded-sm bg-[#F8FAFC] flex items-center justify-between text-[18px] font-[500]">
-        //           <p>Grand Total</p>
-        //           <p>$450</p>
-        //         </div>
-        //       </div>
-        //       {/* Cancellation Policy */}
-        //       <div className="w-[95%]  text-wrap mt-4 text-[14px] font-[400]">
-        //         <p className="font-[500]">Cancellation Policy:</p>
-        //         <p className="my-2 w-full">
-        //           • Full refund if canceled 7 days before the move; 50% refund if
-        //           canceled within 3-6 days; no refund if canceled less than 3 days
-        //           before the move.
-        //         </p>
-        //       </div>
-        //       <div className="flex flex-col">
-        //         <button
-        //           onClick={() => setModalOpen(false)}
-        //           className="w-full bg-[#FA1F00] p-2 rounded-md shadow-sm my-2 hover:bg-red-600 text-white"
-        //         >
-        //           Confirm
-        //         </button>
-        //         <button
-        //           onClick={() => setModalOpen(false)}
-        //           className="w-full border border-[#FA1F00] text-black p-2 rounded-md shadow-sm my-2 hover:bg-red-600/10 "
-        //         >
-        //           Close
-        //         </button>
-        //       </div>
-        //     </div>
-        //   </div>
-        // )
-      }
     </div>
   );
 };

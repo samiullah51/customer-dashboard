@@ -1,8 +1,7 @@
 import React from "react";
 import { CiEdit, CiWallet } from "react-icons/ci";
-import { HiOutlineDocumentText, HiOutlineUser } from "react-icons/hi2";
-import { LuUsers2 } from "react-icons/lu";
-import { PiCalendarDotsLight, PiUsersThree } from "react-icons/pi";
+import { HiOutlineDocumentText } from "react-icons/hi2";
+import { PiCalendarDotsLight } from "react-icons/pi";
 import { RxDashboard } from "react-icons/rx";
 
 function Sidebar({
@@ -38,9 +37,9 @@ function Sidebar({
         </li>
         <li>
           <button
-            onClick={() => handleLinkClick("/dashboard/user-management")}
+            onClick={() => handleLinkClick("/dashboard/quote-management")}
             className={`flex items-center px-4 py-3 w-full rounded-md text-left transition ${
-              isActive("/dashboard/user-management")
+              isActive("/dashboard/quote-management")
                 ? "bg-[#FA1F00] text-white"
                 : "hover:bg-[#FA1F00]/30"
             }`}
@@ -77,9 +76,9 @@ function Sidebar({
         </li>{" "}
         <li>
           <button
-            onClick={() => handleLinkClick("/dashboard/dispute-management")}
+            onClick={() => handleLinkClick("/dashboard/customer-support")}
             className={`flex items-center px-4 py-3 w-full rounded-md text-left transition ${
-              isActive("/dashboard/dispute-management")
+              isActive("/dashboard/customer-support")
                 ? "bg-[#FA1F00] text-white"
                 : "hover:bg-[#FA1F00]/30"
             }`}

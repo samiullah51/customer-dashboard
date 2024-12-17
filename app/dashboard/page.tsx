@@ -1,10 +1,10 @@
 import React from "react";
-import CompaniesTable from "../components/Dashboard/Companies";
+import BookingManagment from "../components/Dashboard/BookingManagment";
 
 function page() {
   return (
     <div>
-      <CompaniesTable />
+      <BookingManagment />
     </div>
   );
 }

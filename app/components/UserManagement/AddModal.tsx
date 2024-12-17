@@ -1,10 +1,7 @@
-import { Merriweather } from "next/font/google";
 import React from "react";
-import { CiLock } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa6";
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { PiShieldCheckThin } from "react-icons/pi";
-import { SlPhone } from "react-icons/sl";
+
 import { TiDocumentText } from "react-icons/ti";
 
 function AddModal() {

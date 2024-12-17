@@ -8,7 +8,7 @@ const merriweather = Merriweather({
   style: ["normal", "italic"],
 });
 
-const CompaniesTable: React.FC = () => {
+const BookingManagment: React.FC = () => {
   return (
     <div className="w-[100%]  container mx-auto ">
       <div className="flex  flex-col md:flex-row md:justify-between items-center pr-2">
@@ -24,4 +24,4 @@ const CompaniesTable: React.FC = () => {
   );
 };
 
-export default CompaniesTable;
+export default BookingManagment;

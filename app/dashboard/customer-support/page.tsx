@@ -1,4 +1,3 @@
-import DisputeTicketsTable from "@/app/components/DisputeTickets/DisputeTickets";
 import CustomerTable from "@/app/components/UserManagement/Customers";
 import React from "react";
 

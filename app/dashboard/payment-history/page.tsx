@@ -1,5 +1,4 @@
-import DriverManagement from "@/app/components/DriverManagement/DriverManagement";
-import TransactionTable from "@/app/components/FinancialManagement/Transactions";
+import TransactionTable from "@/app/components/PaymentHistory/Transactions";
 import React from "react";
 
 function page() {

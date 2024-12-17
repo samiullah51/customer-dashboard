@@ -1,24 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { SlOptions, SlPhone } from "react-icons/sl";
-import { FaCalendarAlt } from "react-icons/fa";
+import { SlOptions } from "react-icons/sl";
 import { FiRefreshCcw } from "react-icons/fi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Merriweather } from "next/font/google";
-import { CiLocationOn } from "react-icons/ci";
-
 import { BsArrowRight, BsEye } from "react-icons/bs";
 import Pagination from "../global/Pagination";
 import AddModal from "./AddModal";
 import Details from "./Details";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import ManagePropertyType from "../Setting/ManagePropertyType";
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-});
+
 interface Customer {
   customerId: string;
   customerName: string;
@@ -80,18 +72,6 @@ const CustomerTable: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isTruckView, setTruckView] = useState(false);
 
-  const handleToggleStatus = (customerId: string) => {
-    setFilteredCustomers((prev) =>
-      prev.map((customer) =>
-        customer.customerId === customerId
-          ? {
-              ...customer,
-              status: customer.status === "Pending" ? "InActive" : "Pending",
-            }
-          : customer
-      )
-    );
-  };
   const toggleView = () => {
     setTruckView((prev) => !prev);
   };
@@ -116,7 +96,6 @@ const CustomerTable: React.FC = () => {
     setShowReset(false);
   };
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
   const handleDropdownToggle = (bookingId: string) => {
     setActiveDropdown(activeDropdown === bookingId ? null : bookingId);
   };

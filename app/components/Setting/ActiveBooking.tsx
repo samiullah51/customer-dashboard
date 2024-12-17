@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { CiLock } from "react-icons/ci";
 import { SlOptionsVertical } from "react-icons/sl";
 import { FiMap } from "react-icons/fi";
 
-const ChangePassword = () => {
+const ActiveBooking = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -124,4 +123,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default ActiveBooking;

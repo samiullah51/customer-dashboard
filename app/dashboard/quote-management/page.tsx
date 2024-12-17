@@ -66,10 +66,10 @@ const page = () => {
           <div className="flex flex-col justify-end items-end">
             <p>$1,200</p>
             <div className="flex my-2">
-              <button className="outline-none mr-2 bg-[#F6F5F5] border px-4 py-1 border-none text-sm py-1 px2 rounded-md">
+              <button className="outline-none mr-2 bg-[#F6F5F5] border px-4  border-none text-sm py-1 px2 rounded-md">
                 Decline
               </button>
-              <button className="outline-none bg-[#FA1F00] text-white border px-4 py-1 border-none text-sm py-1 px2 rounded-md">
+              <button className="outline-none bg-[#FA1F00] text-white border px-4  border-none text-sm py-1 px2 rounded-md">
                 Accept
               </button>
             </div>
@@ -94,10 +94,10 @@ const page = () => {
           <div className="flex my-2 md:my-0 flex-col justify-end items-end">
             <p>$1,200</p>
             <div className="flex my-2">
-              <button className="outline-none mr-2 bg-[#F6F5F5] border px-4 py-1 border-none text-sm py-1 px2 rounded-md">
+              <button className="outline-none mr-2 bg-[#F6F5F5] border px-4  border-none text-sm py-1 px2 rounded-md">
                 Decline
               </button>
-              <button className="outline-none bg-[#FA1F00] text-white border px-4 py-1 border-none text-sm py-1 px2 rounded-md">
+              <button className="outline-none bg-[#FA1F00] text-white border px-4  border-none text-sm py-1 px2 rounded-md">
                 Accept
               </button>
             </div>
