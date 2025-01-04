@@ -33,7 +33,7 @@ function Header({
 
       <div className="relative px-[25px]" ref={dropdownRef}>
         <div
-          className="flex items-center cursor-pointer"
+          className="flex items-center select-none cursor-pointer"
           onClick={toggleDropdown}
         >
           <img
@@ -50,8 +50,16 @@ function Header({
         </div>
 
         {isDropdownOpen && (
-          <div className="absolute right-0 mt-2 w-48 bg-white  border border-gray-200  rounded-md shadow-lg z-50">
+          <div className="absolute select-none right-1 mt-2 w-48 bg-white  border border-gray-200  rounded-md shadow-lg z-50">
             <ul>
+              <li>
+                <button
+                  onClick={() => handleLinkClick("/")}
+                  className="w-full text-left block px-4 py-2 text-sm text-gray-700  hover:bg-gray-100 "
+                >
+                  Nagel Home
+                </button>
+              </li>
               <li>
                 <button
                   onClick={() => handleLinkClick("/dashboard/setting")}

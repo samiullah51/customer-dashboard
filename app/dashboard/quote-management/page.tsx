@@ -1,7 +1,15 @@
 "use client";
+import DetailsModal from "@/app/components/Setting/DetailsModal";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 
 const page = () => {
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const router = useRouter();
+
+  const openIsDetialsModal = () => setIsDetailsModalOpen(true);
+  const closeDetailsModal = () => setIsDetailsModalOpen(false);
   return (
     <div className="space-y-6 px-4   mx-auto ">
       <h1 className={` text-[18px] font-[700] text-[#052145] mt-10 mb-5`}>
@@ -33,7 +41,10 @@ const page = () => {
           <p>Items to Be Moved</p>
           <p>
             2 Bedrooms, Living Room, Kitchen,{" "}
-            <span className="text-[#FA1F00] cursor-pointer hover:underline">
+            <span
+              onClick={() => setIsDetailsModalOpen(true)}
+              className="text-[#FA1F00] cursor-pointer hover:underline"
+            >
               All Items list
             </span>{" "}
           </p>
@@ -69,7 +80,10 @@ const page = () => {
               <button className="outline-none mr-2 bg-[#F6F5F5] border px-4  border-none text-sm py-1 px2 rounded-md">
                 Decline
               </button>
-              <button className="outline-none bg-[#FA1F00] text-white border px-4  border-none text-sm py-1 px2 rounded-md">
+              <button
+                onClick={() => router.push("/book-now")}
+                className="outline-none bg-[#FA1F00] text-white border px-4  border-none text-sm py-1 px2 rounded-md"
+              >
                 Accept
               </button>
             </div>
@@ -97,7 +111,10 @@ const page = () => {
               <button className="outline-none mr-2 bg-[#F6F5F5] border px-4  border-none text-sm py-1 px2 rounded-md">
                 Decline
               </button>
-              <button className="outline-none bg-[#FA1F00] text-white border px-4  border-none text-sm py-1 px2 rounded-md">
+              <button
+                onClick={() => router.push("/book-now")}
+                className="outline-none bg-[#FA1F00] text-white border px-4  border-none text-sm py-1 px2 rounded-md"
+              >
                 Accept
               </button>
             </div>
@@ -108,6 +125,7 @@ const page = () => {
           <p>Grand Total</p>
           <p>$439</p>
         </div>
+        {isDetailsModalOpen && <DetailsModal closeModal={closeDetailsModal} />}
       </div>
     </div>
   );
