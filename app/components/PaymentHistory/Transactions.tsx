@@ -5,12 +5,14 @@ import { BsEye } from "react-icons/bs";
 import "react-datepicker/dist/react-datepicker.css";
 import Pagination from "../global/Pagination";
 import { Merriweather } from "next/font/google";
+import DetailsModal from "./DetailsModal";
 const merriweather = Merriweather({
   subsets: ["latin"],
   weight: ["400", "700"],
   style: ["normal", "italic"],
 });
 interface Transaction {
+  orderNumber: string;
   transactionId: string;
   customerName: string;
   payment: string;
@@ -21,6 +23,7 @@ interface Transaction {
 
 const transactions: Transaction[] = [
   {
+    orderNumber: "001",
     transactionId: "T001",
     customerName: "John Smith",
     payment: "$100",
@@ -29,6 +32,8 @@ const transactions: Transaction[] = [
     status: "Active",
   },
   {
+    orderNumber: "002",
+
     transactionId: "T002",
     customerName: "Alice Johnson",
     payment: "$50",
@@ -37,6 +42,8 @@ const transactions: Transaction[] = [
     status: "Cancelled",
   },
   {
+    orderNumber: "003",
+
     transactionId: "T003",
     customerName: "Robert Brown",
     payment: "$75",
@@ -45,6 +52,8 @@ const transactions: Transaction[] = [
     status: "Active",
   },
   {
+    orderNumber: "004",
+
     transactionId: "T004",
     customerName: "Emily Davis",
     payment: "$200",
@@ -53,6 +62,8 @@ const transactions: Transaction[] = [
     status: "Cancelled",
   },
   {
+    orderNumber: "005",
+
     transactionId: "T005",
     customerName: "Chris Wilson",
     payment: "$120",
@@ -61,6 +72,8 @@ const transactions: Transaction[] = [
     status: "Active",
   },
   {
+    orderNumber: "006",
+
     transactionId: "T006",
     customerName: "Sophia Lee",
     payment: "$150",
@@ -69,6 +82,8 @@ const transactions: Transaction[] = [
     status: "Active",
   },
   {
+    orderNumber: "007",
+
     transactionId: "T007",
     customerName: "Liam Martinez",
     payment: "$90",
@@ -82,7 +97,10 @@ const TransactionTable: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [filteredTransactions, setFilteredTransactions] =
     useState<Transaction[]>(transactions);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
 
+  const openIsDetialsModal = () => setIsDetailsModalOpen(true);
+  const closeDetailsModal = () => setIsDetailsModalOpen(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
@@ -127,6 +145,7 @@ const TransactionTable: React.FC = () => {
           <thead>
             <tr className="bg-[#F8FAFC] text-left text-[#0A0B0A] border-t border-r border-l border-transparent">
               <th className="p-[15px] font-[500]">S No</th>
+              <th className="p-[15px] font-[500]">Order No</th>
               <th className="p-[15px] font-[500]">Transaction ID</th>
               <th className="p-[15px] font-[500]">Company Name</th>
               <th className="p-[15px] font-[500]">Payment</th>
@@ -144,6 +163,7 @@ const TransactionTable: React.FC = () => {
                 <td className="p-[15px] border-r border-[#FFE8E5]">
                   {index + 1}
                 </td>
+                <td className="p-[15px]">{transaction.orderNumber}</td>
                 <td className="p-[15px]">{transaction.transactionId}</td>
                 <td className="p-[15px]">{transaction.customerName}</td>
                 <td className="p-[15px]">{transaction.payment}</td>
@@ -171,7 +191,10 @@ const TransactionTable: React.FC = () => {
                   {activeDropdown === transaction.transactionId && (
                     <div className="absolute bottom-2 right-[60%] bg-white z-10 border border-[#FFE8E5] rounded shadow-lg mt-2">
                       <ul>
-                        <li className="flex items-center px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
+                        <li
+                          onClick={() => setIsDetailsModalOpen(true)}
+                          className="flex items-center px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer"
+                        >
                           <BsEye className="text-lg mr-2" />
                           View
                         </li>
@@ -185,6 +208,7 @@ const TransactionTable: React.FC = () => {
         </table>
       </div>
       <Pagination />
+      {isDetailsModalOpen && <DetailsModal closeModal={closeDetailsModal} />}
     </div>
   );
 };

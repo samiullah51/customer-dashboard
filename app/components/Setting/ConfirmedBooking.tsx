@@ -1,9 +1,21 @@
+import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
+import DetailsModal from "./DetailsModal";
 
 const ConfirmedBooking = () => {
+  const [showOptions, setShowOptions] = useState(false);
+
+  const handleCancelOrder = () => {
+    console.log("Order has been canceled.");
+    setShowOptions(false);
+  };
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+
+  const openIsDetialsModal = () => setIsDetailsModalOpen(true);
+  const closeDetailsModal = () => setIsDetailsModalOpen(false);
   return (
-    <div className="space-y-6   mx-auto ">
-      <div className="border text-wrap bg-white  border-[#FFE8E5] rounded-md p-4">
+    <div className="space-y-6 mx-auto">
+      <div className="border text-wrap bg-white border-[#FFE8E5] rounded-md p-4">
         <div className="flex items-start justify-between">
           <div className="flex flex-col md:flex-row items-center justify-start">
             <div className="flex flex-col md:flex-row mb-4 items-start md:items-center">
@@ -14,10 +26,8 @@ const ConfirmedBooking = () => {
                 height={60}
                 className="mr-4"
               />
-              <div className="text-[#052145] text-wrap h-full  py-2 flex flex-col justify-between">
-                <p className="text-[16px]  font-[500] mb-1">
-                  Direct Movers LLC
-                </p>
+              <div className="text-[#052145] text-wrap h-full py-2 flex flex-col justify-between">
+                <p className="text-[16px] font-[500] mb-1">Direct Movers LLC</p>
                 <p>Booking Reference: #123456</p>
               </div>
             </div>
@@ -25,8 +35,23 @@ const ConfirmedBooking = () => {
               Waiting for driver to assign
             </span>
           </div>
-          <div className=" bg-[#F6F5F5] p-3 ml-[-20px] md:ml-0  rounded-full  cursor-pointer hover:bg-gray-200">
-            <SlOptionsVertical />
+          <div className="relative">
+            <div
+              className="bg-[#F6F5F5] p-3 ml-[-20px] md:ml-0 rounded-full cursor-pointer hover:bg-gray-200"
+              onClick={() => setShowOptions((prev) => !prev)}
+            >
+              <SlOptionsVertical />
+            </div>
+            {showOptions && (
+              <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg">
+                <button
+                  onClick={handleCancelOrder}
+                  className="block w-full text-left px-4 py-2 text-sm  hover:bg-red-50"
+                >
+                  Cancel Order
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -43,7 +68,10 @@ const ConfirmedBooking = () => {
           <p>Items to Be Moved</p>
           <p>
             2 Bedrooms, Living Room, Kitchen,{" "}
-            <span className="text-[#FA1F00] cursor-pointer hover:underline">
+            <span
+              onClick={() => setIsDetailsModalOpen(true)}
+              className="text-[#FA1F00] cursor-pointer hover:underline"
+            >
               All Items list
             </span>{" "}
           </p>
@@ -53,12 +81,12 @@ const ConfirmedBooking = () => {
           <p>Credit Card (**** 1234)</p>
         </div>
 
-        {/* Grand Total */}
         <div className="w-full p-2 rounded-sm bg-[#F8FAFC] flex items-center justify-between text-[18px] font-[500]">
           <p>Grand Total</p>
           <p>$439</p>
         </div>
       </div>
+      {isDetailsModalOpen && <DetailsModal closeModal={closeDetailsModal} />}
     </div>
   );
 };

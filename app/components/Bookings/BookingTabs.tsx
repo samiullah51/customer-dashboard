@@ -13,7 +13,7 @@ function BookingTabs() {
       case "1":
         return <ConfirmedBooking />;
       case "2":
-        return <ActiveBooking />;
+        return <ActiveBooking setActiveTab={setActiveTab} />;
       case "3":
         return <CompletedBooking />;
       case "4":

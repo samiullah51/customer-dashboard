@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { SlOptions } from "react-icons/sl";
+import { SlOptions, SlOptionsVertical } from "react-icons/sl";
 import { FiRefreshCcw } from "react-icons/fi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,8 +8,9 @@ import { BsArrowRight, BsEye } from "react-icons/bs";
 import Pagination from "../global/Pagination";
 import AddModal from "./AddModal";
 import Details from "./Details";
-import { BiEdit, BiTrash } from "react-icons/bi";
+import { BiCloset, BiCross, BiEdit, BiTrash } from "react-icons/bi";
 import ManagePropertyType from "../Setting/ManagePropertyType";
+import { CgCloseR } from "react-icons/cg";
 
 interface Customer {
   customerId: string;
@@ -71,9 +72,15 @@ const CustomerTable: React.FC = () => {
   const [isDetailsOpen, setIsDetailsModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isTruckView, setTruckView] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const toggleView = () => {
-    setTruckView((prev) => !prev);
+  const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+  const [isDisputeOpen, setIsDisputeOpen] = useState(false);
+
+  const openDispute = () => setIsDisputeOpen(true);
+  const toggleView = (val: any) => {
+    setTruckView(!val);
+    setIsDropdownOpen(false);
   };
   useEffect(() => {
     if (selectedDate) {
@@ -121,21 +128,36 @@ const CustomerTable: React.FC = () => {
               Reset
             </button>
           )}
-          <div className="relative flex flex-col md:flex-row items-start md:items-center mt-3 md:mt-0 space-y-3 md:space-y-0">
-            <button
-              onClick={toggleView}
-              className="flex items-center border bg-[#FA1F00] text-white border-[#FFE8E5] py-3 px-5 rounded-md text-sm hover:bg-[#FA1F00]/80 w-full md:w-auto"
-            >
-              {isTruckView ? "View FAQs" : "View Dispute Tickets"}
-              <BsArrowRight className="ml-2" />
-            </button>
+
+          <div className="relative flex   items-center  md:mt-0 space-y-3 md:space-y-0">
             <button
               onClick={openModal}
-              className={` flex items-center border bg-[#FA1F00] ml-2 text-white py-3 px-5 rounded-md text-sm hover:bg-[#FA1F00]/90`}
+              className={` flex mr-2 items-center border bg-[#FA1F00] ml-2 text-white py-3 px-5 rounded-md text-sm hover:bg-[#FA1F00]/90`}
             >
               + Create new
             </button>
-
+            <div
+              onClick={toggleDropdown}
+              className="bg-[#F6F5F5]   p-3   rounded-full cursor-pointer hover:bg-gray-200"
+            >
+              <SlOptionsVertical />
+            </div>
+            {isDropdownOpen && (
+              <div className="absolute select-none top-12 right-6 bg-white border border-[#FFE8E5] rounded-md shadow-lg p-0 z-10">
+                <p
+                  className="px-5 py-3  text-sm cursor-pointer hover:bg-gray-100"
+                  onClick={() => toggleView(true)}
+                >
+                  FAQs
+                </p>
+                <p
+                  className="px-5 py-3  text-sm cursor-pointer hover:bg-gray-100"
+                  onClick={() => toggleView(false)}
+                >
+                  Dispute Tickets
+                </p>
+              </div>
+            )}
             {isModalOpen && <AddModal />}
 
             {isDetailsOpen && (
@@ -222,23 +244,10 @@ const CustomerTable: React.FC = () => {
                               <BsEye className="text-lg mr-2" />
                               View
                             </li>
-                            <li
-                              onClick={() =>
-                                handleMenuClick("track", customer.customerId)
-                              }
-                              className="flex items-center px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer"
-                            >
-                              <BiEdit className="text-lg mr-2" />
-                              Edit
-                            </li>
-                            <li
-                              onClick={() =>
-                                handleMenuClick("track", customer.customerId)
-                              }
-                              className="flex items-center px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer"
-                            >
-                              <BiTrash className="text-lg mr-2" />
-                              Delete
+
+                            <li className="flex items-center px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
+                              <CgCloseR className="text-lg mr-2" />
+                              Close
                             </li>
                           </ul>
                         </div>

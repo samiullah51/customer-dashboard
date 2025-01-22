@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 import { SlOptionsVertical } from "react-icons/sl";
+import DetailsModal from "./DetailsModal";
 
 const CancelledBooking = () => {
-  const [image, setImage] = useState(
-    "https://cdn.vectorstock.com/i/1000v/51/99/icon-of-user-avatar-for-web-site-or-mobile-app-vector-3125199.jpg"
-  );
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
 
+  const openIsDetialsModal = () => setIsDetailsModalOpen(true);
+  const closeDetailsModal = () => setIsDetailsModalOpen(false);
   return (
     <div className="space-y-6   mx-auto ">
       <div className="border text-wrap bg-white  border-[#FFE8E5] rounded-md p-4">
@@ -31,9 +32,6 @@ const CancelledBooking = () => {
               Cancelled
             </span>
           </div>
-          <div className=" bg-[#F6F5F5] p-3 ml-[-20px] md:ml-0  rounded-full  cursor-pointer hover:bg-gray-200">
-            <SlOptionsVertical />
-          </div>
         </div>
 
         <p className="text-[#052145] mb-3 font-[500]">Details</p>
@@ -49,7 +47,10 @@ const CancelledBooking = () => {
           <p>Items to Be Moved</p>
           <p>
             2 Bedrooms, Living Room, Kitchen,{" "}
-            <span className="text-[#FA1F00] cursor-pointer hover:underline">
+            <span
+              onClick={() => setIsDetailsModalOpen(true)}
+              className="text-[#FA1F00] cursor-pointer hover:underline"
+            >
               All Items list
             </span>{" "}
           </p>
@@ -59,12 +60,12 @@ const CancelledBooking = () => {
           <p>Credit Card (**** 1234)</p>
         </div>
 
-        {/* Grand Total */}
         <div className="w-full p-2 rounded-sm bg-[#F8FAFC] flex items-center justify-between text-[18px] font-[500]">
           <p>Grand Total</p>
           <p>$439</p>
         </div>
       </div>
+      {isDetailsModalOpen && <DetailsModal closeModal={closeDetailsModal} />}
     </div>
   );
 };

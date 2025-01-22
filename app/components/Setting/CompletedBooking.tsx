@@ -3,6 +3,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { TiDocumentText } from "react-icons/ti";
 import { Merriweather } from "next/font/google";
 import { BsStarFill } from "react-icons/bs";
+import DetailsModal from "./DetailsModal";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -24,14 +25,27 @@ const CompletedBooking = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const [showOptions, setShowOptions] = useState(false);
 
+  const handleCancelOrder = () => {
+    setShowOptions(false);
+  };
   const handleRating = (category: any, value: any) => {
     setRatings((prev: any) => ({
       ...prev,
       [category]: value,
     }));
   };
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+  const [isDisputeOpen, setIsDisputeOpen] = useState(false);
+
+  const openDispute = () => setIsDisputeOpen(true);
+
+  const openIsDetialsModal = () => setIsDetailsModalOpen(true);
+  const closeDetailsModal = () => setIsDetailsModalOpen(false);
   return (
     <div className="space-y-6 mx-auto">
       <div className="border relative text-wrap bg-white border-[#FFE8E5] rounded-md p-4">
@@ -104,9 +118,26 @@ const CompletedBooking = () => {
               Download invoice
             </button>
           </div>
-          <div className="bg-[#F6F5F5] absolute top-3 right-3 p-3 ml-[-20px] md:ml-0 rounded-full cursor-pointer hover:bg-gray-200">
+          <div
+            onClick={toggleDropdown}
+            className="bg-[#F6F5F5] absolute top-3 right-3 p-3 ml-[-20px] md:ml-0 rounded-full cursor-pointer hover:bg-gray-200"
+          >
             <SlOptionsVertical />
           </div>
+
+          {/* Dropdown Menu */}
+          {isDropdownOpen && (
+            <div className="absolute top-[50px] right-4 bg-white border border-[#FFE8E5] rounded-md shadow-lg p-0 z-10">
+              <p
+                className="px-5 py-3  text-sm cursor-pointer hover:bg-gray-100"
+                onClick={() => {
+                  setIsDropdownOpen(false);
+                }}
+              >
+                Dispute
+              </p>
+            </div>
+          )}
         </div>
 
         <p className="text-[#052145] mb-3 font-[500]">Details</p>
@@ -122,7 +153,10 @@ const CompletedBooking = () => {
           <p>Items to Be Moved</p>
           <p>
             2 Bedrooms, Living Room, Kitchen,{" "}
-            <span className="text-[#FA1F00] cursor-pointer hover:underline">
+            <span
+              onClick={() => setIsDetailsModalOpen(true)}
+              className="text-[#FA1F00] cursor-pointer hover:underline"
+            >
               All Items list
             </span>{" "}
           </p>
@@ -137,16 +171,13 @@ const CompletedBooking = () => {
         </div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <>
-          {/* Overlay */}
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-[99]"
             style={{ margin: 0 }}
             onClick={closeModal}
           ></div>
-          {/* Modal Content */}
           <div className="fixed inset-0 flex items-center justify-center z-[100]">
             <div className="bg-white rounded-lg p-6 w-[95%] md:w-1/3">
               <h1
@@ -207,6 +238,7 @@ const CompletedBooking = () => {
           </div>
         </>
       )}
+      {isDetailsModalOpen && <DetailsModal closeModal={closeDetailsModal} />}
     </div>
   );
 };

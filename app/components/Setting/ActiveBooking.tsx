@@ -3,7 +3,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { FiMap } from "react-icons/fi";
 import DetailsModal from "./DetailsModal";
 
-const ActiveBooking = () => {
+const ActiveBooking = ({ setActiveTab }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDisputeOpen, setIsDisputeOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -15,7 +15,10 @@ const ActiveBooking = () => {
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
   const [selectedReason, setSelectedReason] = useState("");
   const [customReason, setCustomReason] = useState("");
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
 
+  const openIsDetialsModal = () => setIsDetailsModalOpen(true);
+  const closeDetailsModal = () => setIsDetailsModalOpen(false);
   const handleReasonChange = (reason: any) => setSelectedReason(reason);
   return (
     <div className="space-y-6 mx-auto">
@@ -47,7 +50,10 @@ const ActiveBooking = () => {
               <FiMap className="mr-1" />
               Track on map
             </button>
-            <button className="flex items-center w-full my-1 md:my-0 p-2 bg-[#FA1F00] text-white mx-4 text-[14px] rounded-md cursor-pointer hover:bg-[#d11a01]">
+            <button
+              onClick={() => setActiveTab("3")}
+              className="flex items-center w-full my-1 md:my-0 p-2 bg-[#FA1F00] text-white mx-4 text-[14px] rounded-md cursor-pointer hover:bg-[#d11a01]"
+            >
               Confirm booking
             </button>
 
@@ -93,7 +99,10 @@ const ActiveBooking = () => {
           <p>Items to Be Moved</p>
           <p>
             2 Bedrooms, Living Room, Kitchen,{" "}
-            <span className="text-[#FA1F00] cursor-pointer hover:underline">
+            <span
+              onClick={() => setIsDetailsModalOpen(true)}
+              className="text-[#FA1F00] cursor-pointer hover:underline"
+            >
               All Items list
             </span>{" "}
           </p>
@@ -103,23 +112,19 @@ const ActiveBooking = () => {
           <p>Credit Card (**** 1234)</p>
         </div>
 
-        {/* Grand Total */}
         <div className="w-full p-2 rounded-sm bg-[#F8FAFC] flex items-center justify-between text-[18px] font-[500]">
           <p>Grand Total</p>
           <p>$439</p>
         </div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <>
-          {/* Overlay */}
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-[99]"
             style={{ margin: 0 }}
             onClick={closeModal}
           ></div>
-          {/* Modal Content */}
           <div className="fixed inset-0 flex items-center justify-center z-[100]">
             <div className="bg-white rounded-lg p-6 w-[95%] md:w-1/3">
               <div className="w-full h-80 mb-4">
@@ -154,20 +159,17 @@ const ActiveBooking = () => {
 
       {isDisputeOpen && (
         <>
-          {/* Overlay */}
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-[99]"
             style={{ margin: 0 }}
             onClick={closeModal}
           ></div>
-          {/* Modal Content */}
           <div className="fixed inset-0 flex items-center justify-center z-[100]">
             <div className="bg-white rounded-lg p-6 w-[95%] md:w-1/3">
               <h1 className="text-center mb-4 font-medium text-lg">
                 Write Reason for Cancellation
               </h1>
 
-              {/* Radio Button Options */}
               <div
                 className={`mt-2 flex items-center justify-between px-4 py-3 border ${
                   selectedReason === "Not interested"
@@ -231,7 +233,6 @@ const ActiveBooking = () => {
                 />
               </div>
 
-              {/* Custom Textarea for Additional Input */}
               <div className="mt-4">
                 <textarea
                   placeholder="Write anything for cancellation"
@@ -242,7 +243,6 @@ const ActiveBooking = () => {
                 />
               </div>
 
-              {/* Submit Button */}
               <button
                 className="mt-4 w-full bg-[#FA1F00] text-white px-4 py-2 rounded-md hover:bg-[#d11a01]"
                 onClick={() => closeDispute()}
@@ -253,6 +253,7 @@ const ActiveBooking = () => {
           </div>
         </>
       )}
+      {isDetailsModalOpen && <DetailsModal closeModal={closeDetailsModal} />}
     </div>
   );
 };

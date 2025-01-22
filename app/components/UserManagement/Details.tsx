@@ -59,10 +59,7 @@ function Details({ setModalOpen }: any) {
                 className="border-none outline-none w-full bg-white"
               />
             </div>
-            <button
-              onClick={() => setModalOpen(false)}
-              className="bg-[#FA1F00] rounded-md py-5 hover:bg-[#FA1F00]/80 px-8 ml-2 text-white"
-            >
+            <button className="bg-[#FA1F00] rounded-md py-5 hover:bg-[#FA1F00]/80 px-8 ml-2 text-white">
               <IoSend />
             </button>
           </div>
