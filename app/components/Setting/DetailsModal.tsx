@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { CiDiscount1 } from "react-icons/ci";
+import { RxCross2 } from "react-icons/rx";
 
 function DetailsModal({ closeModal }: any) {
   const [activeTab, setActiveTab] = useState(0);
@@ -18,8 +19,14 @@ function DetailsModal({ closeModal }: any) {
       <div className="fixed  inset-0 text-[#052145] flex items-center justify-center z-[100]">
         <div
           style={{ scrollbarWidth: "none" }}
-          className="bg-white rounded-lg p-6 max-h-[85vh] overflow-scroll w-[95%] md:w-1/3"
+          className="bg-white relative rounded-lg p-6 max-h-[85vh] overflow-scroll w-[95%] md:w-1/3"
         >
+          <button
+            onClick={closeModal}
+            className="absolute top-4 right-4 text-lg hover:font-bold"
+          >
+            <RxCross2 />
+          </button>
           <h1 className="font-[500]">Proposal</h1>
           <div className="w-full flex items-center justify-between">
             <div className="flex mb-4">
@@ -113,7 +120,7 @@ function DetailsModal({ closeModal }: any) {
             <p>$0</p>
           </div>
           <h1 className="font-[500] my-4">Note</h1>
-          <p className="text-sm text-[#052145]">
+          <p className="text-sm text-[#052145] text-wrap">
             We are the best company in the town when it come to moving office
             items as we delivered same before we think we can easily do this, so
             let’s connect and make it happen.!
@@ -126,11 +133,11 @@ function DetailsModal({ closeModal }: any) {
             <p>Grand Total</p>
             <p>$1,009</p>
           </div>
-          <p className="text-sm my-3">
+          <p className="text-sm my-3 text-wrap">
             50% deposit required upon booking confirmation balance due on the
             day of the move.
           </p>
-          <li className="text-[14px] my-3">
+          <li className="text-[14px] my-3 text-wrap">
             Cancellation Policy: Full refund if canceled 7 days before the move;
             50% refund if canceled within 3-6 days; no refund if canceled less
             than 3 days before the move.

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import DetailsModal from "./DetailsModal";
+import { RxCross2 } from "react-icons/rx";
 
 const ConfirmedBooking = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -86,6 +87,9 @@ const ConfirmedBooking = () => {
           <p>$439</p>
         </div>
       </div>
+      <button className="absolute top-4 right-4 text-lg hover:font-bold">
+        <RxCross2 />
+      </button>
       {isDetailsModalOpen && <DetailsModal closeModal={closeDetailsModal} />}
     </div>
   );

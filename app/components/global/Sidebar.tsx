@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiEdit, CiWallet } from "react-icons/ci";
-import { HiOutlineDocumentText } from "react-icons/hi2";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { HiOutlineDocumentText, HiOutlineUser } from "react-icons/hi2";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { RxDashboard } from "react-icons/rx";
 
@@ -10,6 +11,8 @@ function Sidebar({
   sidebarRef,
   isSidebarOpen,
 }: any) {
+  const [isTruckMenuOpen, setIsTruckMenuOpen] = useState(false);
+
   return (
     <div
       style={{ scrollbarWidth: "none" }}
@@ -76,16 +79,53 @@ function Sidebar({
         </li>{" "}
         <li>
           <button
-            onClick={() => handleLinkClick("/dashboard/customer-support")}
+            onClick={() => setIsTruckMenuOpen(!isTruckMenuOpen)}
             className={`flex items-center px-4 py-3 w-full rounded-md text-left transition ${
-              isActive("/dashboard/customer-support")
+              isActive("/dashboard/dispute-tickets") ||
+              isActive("/dashboard/faqs") ||
+              isActive("/dashboard/driver-view")
                 ? "bg-[#FA1F00] text-white"
                 : "hover:bg-[#FA1F00]/30"
             }`}
           >
             <CiEdit className="mr-3" size={20} />
             Customer Support
+            <span className="ml-auto">
+              {isTruckMenuOpen ? (
+                <FiChevronUp size={18} />
+              ) : (
+                <FiChevronDown size={18} />
+              )}
+            </span>
           </button>
+          {isTruckMenuOpen && (
+            <ul className="pl-8 mt-2 space-y-2">
+              <li>
+                <button
+                  onClick={() => handleLinkClick("/dashboard/faqs")}
+                  className={`flex items-center px-4 py-2 w-full rounded-md text-left transition ${
+                    isActive("/dashboard/faqs")
+                      ? "text-[#FA1F00] font-bold"
+                      : "hover:bg-[#FA1F00]/30"
+                  }`}
+                >
+                  FAQs
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleLinkClick("/dashboard/dispute-tickets")}
+                  className={`flex items-center px-4 py-2 w-full rounded-md text-left transition ${
+                    isActive("/dashboard/dispute-tickets")
+                      ? "text-[#FA1F00] font-bold"
+                      : "hover:bg-[#FA1F00]/30"
+                  }`}
+                >
+                  Dispute Ticket
+                </button>
+              </li>
+            </ul>
+          )}
         </li>
       </ul>
       <p className="mt-auto pb-2  text-[gray] text-sm text-center select-none">

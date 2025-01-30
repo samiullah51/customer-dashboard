@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ImCross } from "react-icons/im";
 import { IoSend } from "react-icons/io5";
 import { RiAttachment2 } from "react-icons/ri";
 
 function Details({ setModalOpen }: any) {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      console.log("Selected file:", event.target.files[0]); // Handle file upload logic here
+    }
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="relative md:w-[60%] md:max-w-[800px] w-[90%]  mx-auto">
@@ -50,12 +58,21 @@ function Details({ setModalOpen }: any) {
             </div>
           </div>
 
-          <div className="w-full flex items-center justify-between ">
+          <div className="w-full flex items-center justify-between">
             <div className="border flex items-center flex-1 border-[#FFE8E5] my-4 rounded-md p-4">
-              <RiAttachment2 className="text-[16px] mr-2" />
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
+                onChange={handleFileUpload}
+              />
+              <RiAttachment2
+                className="text-[16px] mr-2 cursor-pointer"
+                onClick={() => fileInputRef.current?.click()}
+              />
               <input
                 type="text"
-                placeholder="write your message"
+                placeholder="Write your message"
                 className="border-none outline-none w-full bg-white"
               />
             </div>

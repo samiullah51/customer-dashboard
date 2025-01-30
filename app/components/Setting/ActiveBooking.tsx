@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { FiMap } from "react-icons/fi";
 import DetailsModal from "./DetailsModal";
+import MapComponent from "../global/MapComponent";
 
 const ActiveBooking = ({ setActiveTab }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -118,44 +119,7 @@ const ActiveBooking = ({ setActiveTab }: any) => {
         </div>
       </div>
 
-      {isModalOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-[99]"
-            style={{ margin: 0 }}
-            onClick={closeModal}
-          ></div>
-          <div className="fixed inset-0 flex items-center justify-center z-[100]">
-            <div className="bg-white rounded-lg p-6 w-[95%] md:w-1/3">
-              <div className="w-full h-80 mb-4">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.835434509402!2d-122.41941528468154!3d37.774929679759585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085818e86c5f0a7%3A0xe7b0a548e45c96a1!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1699895545525!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-              <div className="w-full flex items-center justify-between text-[14px] font-[400] mb-4">
-                <p>Pickup address</p>
-                <p>123 Elm Street, Springfield</p>
-              </div>
-              <div className="w-full flex items-center justify-between text-[14px] font-[400] mb-4">
-                <p>Delivery address</p>
-                <p>456 Oak Avenue, Metropolis</p>
-              </div>
-              <button
-                className="mt-4 bg-[#FA1F00] text-white px-4 py-2 rounded-md hover:bg-[#d11a01]"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      {isModalOpen && <MapComponent closeModal={closeModal} />}
 
       {isDisputeOpen && (
         <>
